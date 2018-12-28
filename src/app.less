@@ -1,0 +1,185 @@
+.app {
+    background: url('./images/back_image3.jpg');
+    background-size: 100% 100%; 
+    height: 100vh;
+    width: 100vm;
+    position: relative;
+  
+    .message {
+    
+      z-index: 2;
+      position: absolute;
+      right: 5px;
+      top: 70px;
+      // opacity: 1;
+      // transform: scale(1.0);
+      // animation:msg 2s ;
+      transition: all .2s ease-in;
+     
+      .box {
+        width: 120px;
+        // height: 100px;
+        border-radius: 10px;
+        background: white;
+        position: relative;
+        padding: 10px;
+        
+        .triangle {
+          width: 0;
+          height: 0;
+          border-left: 6px solid transparent;
+          border-right: 6px solid transparent;
+          border-bottom: 8px solid white;
+          position: absolute;
+          top: -8px;
+          left: 50px;
+          
+  
+        }
+         ul {
+            list-style: none;
+            margin-top: 10px;
+            li {
+              .but {
+                display: flex;
+                margin-bottom: 5px;
+                cursor: pointer;
+                color: #176694;
+                .title {
+                  padding: 2px 0 0 6px;
+  
+                }
+                .icon {
+                  padding-left: 5px; 
+  
+                }
+  
+              }
+  
+              .but:hover {
+                color: #29a3e9;
+              }
+            }
+           
+          }
+  
+      }
+    }
+  
+    .main {
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.35);
+      z-index: 1;
+      .header {
+        height: 80px;
+        background: rgba(0, 0, 0, 0.6);
+        position: relative;
+        .logo {
+          position: absolute;
+          left: 10px;
+          top: 25%;
+          color: #29a3e9;
+          font-size: 30px;
+          font-weight: 600;
+          
+        }
+        .icons {
+          position: absolute;
+          right: 100px;
+          top: calc(25% + 8px);
+          width: 280px;
+          color: #f5efef;
+          display: flex;
+          .icon {
+            font-weight: 900;
+            font-size: 16px;
+           }
+           .icon_flex {
+             padding: 0 20px 0 10px;
+             cursor: pointer;
+             .title {
+               padding: 0 3px;
+               font-size: 14px;
+               font-weight: 400;
+             }
+           }
+           .icon_flex:hover {
+             color: #29a3e9;
+           }
+          
+        }
+  
+        .user {
+          position: absolute;
+          right: 10px;
+          top: 10px;
+          height: 70px;
+          .user_context {
+            color: #f5efef;
+            display: flex;
+            cursor: pointer;
+  
+          .img {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            margin-top: 10px;
+          }
+          .nameIcon {
+            margin:20px 2px 0 8px;
+            display: flex;
+           
+            .icon {
+              font-size: 15px;
+              margin-top: -3px;
+  
+            }
+            .name {
+               overflow: hidden;
+              // text-overflow: ellipsis;
+              white-space: nowrap;
+              width: 32px;
+  
+            }
+            
+          }
+  
+        }
+       }
+      }
+      .content {
+        height: calc(100% - 80px);
+        width: 100%;
+        display: flex;
+        .content_menu {
+          height: 100%;
+          // width: 210px;
+          transition: width .2s ease-in;
+          background: rgba(0, 0, 0, 0.6);
+          padding-left: 10px;
+          .change_home {
+            text-align: center;
+            height: 40px;
+            .icon {
+              font-size: 23px;
+              font-weight: 700;
+              color: white;
+              cursor: pointer;
+              transition: transform .3s ease-in;
+            }
+
+          }
+  
+        }
+        .content_router {
+          height: 100%;
+          transition: width .2s ease-in;
+          // width: calc(100% - 210px);
+          // background: rgba(0, 0, 0, 0.8);
+        }
+  
+      }
+  
+    }
+  }

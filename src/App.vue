@@ -11,7 +11,7 @@
             <span class="title">消息</span>
           </div>
           <div class="icon_flex" @click="iconClick(2)">
-            <i class="iconfont icon" v-html=" '&#xe637;'"></i>
+            <i class="iconfont icon" v-html=" '&#xe653;'"></i>
             <span class="title">锁屏</span>
           </div>
 
@@ -20,30 +20,107 @@
             <span class="title">个人中心</span>
           </div>
         </div>
-        <div>
+        <div class="user"  @mouseenter="mouseEnterUser" @mouseleave="mouseleaveUser">
+          <div class="user_context">
+             <img  class="img" src="./images/logo.jpg"/>
+            <div class="nameIcon">
+              <div class="name">admin</div>
+              <div class="icon">
+                <Icon  type="md-arrow-dropdown" />
+              </div>
+            
+            </div>
+
+            <div class="message"  :style="{transform: `scale(${tranValue})`, opacity: opacity }">
+              <msgTab :butList="butList" @butClick="butClick"/>
+            </div>
+
+          </div>
+         
+         
 
         </div>
 
 
       </div>
-      <div class="context">
+
+      <div class="content">
+        <div class="content_menu" :style="{width: (menuWidth + 'px')}">
+          <div class="change_home">
+            <div class="iconfont icon" v-html=" '&#xe741;'" :style="{transform: `rotate(${rotateHome}deg)`}" @click="onChangeHome"></div>
+          </div>
+          <menuList/>
+          
+
+        </div>
+        <div class="content_router" :style="{width: `calc(100% - ${menuWidth})`}">
+
+        </div>
 
       </div>
 
     </div>
+    
   </div>
 </template>
 <script>
+import msgTab from '@/components/msg_tab.vue';
+import menuList from '@/components/menu_list.vue';
 export default {
   name: 'app',
+  components: {
+    msgTab,
+    menuList,
+  },
   data () {
     return {
+      menuWidth: 210,
+      msgShow: false,
+      tranValue: 0.6,
+      opacity: 0,
+      rotateHome: 0,
+      butList: [
+        {
+          id: 1,
+          title: '我的主页',
+          icon: '&#xe686;'
+        },
+        {
+          id: 2,
+          title: '退出登陆',
+          icon: '&#xe668;'
+        },
+      ]
 
     }
   },
   methods: {
     iconClick(id) {
       console.log(id);
+      
+
+    },
+    mouseEnterUser() {
+      this.tranValue = 1;
+      this.opacity = 1;
+    },
+    mouseleaveUser() {
+      this.tranValue = 0.6;
+      this.opacity = 0;
+    },
+    butClick(id) {
+      console.log(id);
+
+    },
+    onChangeHome() {
+      // this.rotateHome = this.rotateHome === 0 ? 180 : 0;
+      if (this.rotateHome === 0) {
+        this.rotateHome = 180;
+        this.menuWidth  = 80;
+      } else {
+        this.rotateHome = 0;
+        this.menuWidth  = 210;
+      }
 
     }
   }
@@ -52,56 +129,5 @@ export default {
 
 
 <style lang="less" scoped>
-.app {
-  background: url('./images/back_image3.jpg');
-  background-size: 100% 100%; 
-  height: 100vh;
-  width: 100vm;
-
-  .main {
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.35);
-    .header {
-      height: 80px;
-      background: rgba(0, 0, 0, 0.6);
-      position: relative;
-      .logo {
-        position: absolute;
-        left: 10px;
-        top: 25%;
-        color: #29a3e9;
-        font-size: 30px;
-        font-weight: 600;
-        
-      }
-      .icons {
-        position: absolute;
-        right: 100px;
-        top: calc(25% + 8px);
-        width: 280px;
-        color: #f5efef;
-        display: flex;
-        .icon {
-          font-weight: 900;
-          font-size: 16px;
-         }
-         .icon_flex {
-           padding: 0 20px 0 10px;
-           cursor: pointer;
-           .title {
-             padding: 0 3px;
-             font-size: 14px;
-             font-weight: 400;
-           }
-         }
-         .icon_flex:hover {
-           color: #29a3e9;
-         }
-        
-      }
-    }
-
-  }
-}
+@import './app.less';
 </style>

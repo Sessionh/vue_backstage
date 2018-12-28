@@ -1,7 +1,7 @@
 module.exports = {
-	baseUrl: '/',
-	configureWebpack: {
+ 	baseUrl: '/',
+  configureWebpack: {
 	    devtool: 'source-map'
-	}
+  }
 	
 }
