@@ -2,22 +2,22 @@
     <div class="menu">
         <ul class="menu_one">
             <li >
-               <div class="menu_one_title" @click="menuOneClick">
-                 <div class="menu_one_t">一级菜单1</div>
-                 <div class="menu_one_icon">
-                   <i class="iconfont icon" v-html="'&#xe65e;'"></i>
-                 </div>
+               <div class="menu_one_title" @click="menuOneClick(1)">
+                  <div class="menu_one_t">一级菜单1</div>
+                  <div class="menu_one_icon">
+                    <i class="iconfont icon" v-html="'&#xe65e;'"></i>
+                  </div>
                  
                 </div> 
-                <ul class="menu_two">
+                <ul v-show="menuOpen.indexOf(1) >= 0" class="menu_two">
                     <li>
-                      <div class="content">
+                      <div class="content" @click="subMenuClick('user')" :style="{background: actionName === 'user' ? '' : 'linear-gradient(to bottom  right, #2727ce, #0879bb)'}">
                         2级菜单-1
                       </div>
                         
                     </li>
-                     <li>
-                        <div class="content">
+                    <li>
+                        <div class="content" @click="subMenuClick('role')" :style="{background: actionName === 'role' ? '' : 'linear-gradient(to bottom  right, #2727ce, #0879bb)'}">
                          2级菜单-2
                       </div>
                     </li>
@@ -25,14 +25,14 @@
 
             </li>
            <li >
-               <div class="menu_one_title" @click="menuOneClick">
-                 <div class="menu_oneT">一级菜单1</div>
-                 <div >
-                   <i class="iconfont icon" v-html="'&#xe65e;'"></i>
-                 </div>
+               <div class="menu_one_title" @click="menuOneClick(2)">
+                  <div class="menu_one_t">一级菜单1</div>
+                  <div class="menu_one_icon">
+                    <i class="iconfont icon" v-html="'&#xe65e;'"></i>
+                  </div>
                  
                 </div> 
-                <ul class="menu_two">
+                <ul v-show="menuOpen.indexOf(2) >= 0" class="menu_two">
                     <li>
                       <div class="content">
                         2级菜单-1
@@ -57,11 +57,29 @@ export default {
   name: 'menu_list',
   data() {
     return {
+      menuOpen: [],
+      // actionName: '',
 
     }
   },
+  computed: {
+    actionName() {
+      return '';
+
+    }
+
+  },
   methods: {
-    menuOneClick() {
+    menuOneClick(id) {
+      if (this.menuOpen.indexOf(id) >= 0) {
+        this.menuOpen.splice(this.menuOpen.indexOf(id), 1);
+      } else {
+        this.menuOpen.push(id)
+      }
+
+    },
+    subMenuClick(val) {
+      this.actionName = val;
 
     }
 
@@ -72,21 +90,29 @@ export default {
 <style lang="less" scoped>
 .menu {
     color: white;
+    
     .menu_one {
       width: auto;
+      user-select: none;
       .menu_one_title {
         cursor: pointer;
-        display: flex;
+        position: relative;
+        height: 30px;
         .icon {
           font-size: 12px;
           font-weight: 700;
+          user-select: none;
         }
         .menu_one_t {
           padding: 5px 0;
         }
         .menu_one_icon {
           margin-right: 0px;
+          position: absolute;
+          right: 5px;
+          top: 5px;
         }
+       
 
       }
 
@@ -95,14 +121,14 @@ export default {
         .content {
           // width: 160px;
           padding: 10px 0 10px 20px;
-          margin: 2px 0;
+          margin: 2px 2px 2px 0;
           
           border-radius: 5px;
 
 
         }
         .content:hover {
-          background: gold;
+          background: linear-gradient(to bottom  right, #2727ce, #0879bb);
           cursor: pointer;
 
         }
