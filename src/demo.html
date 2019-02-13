@@ -1,0 +1,35 @@
+<html>
+<head>
+    <title>Async request test</title>
+    <script>
+        function Send(url, callback) {
+            var xhr = new XMLHttpRequest();      
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+                    if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) //200:Success.304:Tell browser to read cache.
+                    {                        
+                        if (callback === undefined || callback === null) {
+                            return;
+                        }
+                        callback(xhr.responseText);
+                    }
+                    else {
+                        alert(xhr.responseText);
+                    }
+                }
+            }       
+            xhr.open("GET", url, true);
+            xhr.send(null);
+        }
+        function Request() {           
+            var url = "ppp.cgi?Data=Hello";
+            Send(url,function (e) {
+                alert(e);
+            });
+        }
+    </script>
+</head>
+<body>
+    <input type="button" value="Test" onclick="Request()"></input>
+</body>
+</html>

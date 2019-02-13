@@ -54,6 +54,9 @@
 
         </div>
         <div class="content_router" :style="{width: `calc(100% - ${menuWidth})`}">
+          <form action="http://192.168.10.107/cgi-bin/ppp.cgi" method="post" target="_blank">
+            <input type="submit" value="Submit" />
+          </form>
 
         </div>
 
@@ -97,6 +100,57 @@ export default {
   methods: {
     iconClick(id) {
       console.log(id);
+      // let data  ={
+      //   user_name: 'root ',
+      //   user_password: 'htnice',
+      // }
+      // this.$http.post('/cgi-bin/ppp.cgi').then(res => {
+      //   console.log(11);
+      //   console.log(res);
+      //   // window.location.href = res;
+      // })
+
+      function Send(url, callback) {
+        var xhr = new XMLHttpRequest();      
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState == 4) {
+            if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) //200:Success.304:Tell browser to read cache.
+            {                        
+              if (callback === undefined || callback === null) {
+                return;
+              }
+              callback(xhr.responseText);
+            }
+            else {
+              alert(xhr.responseText);
+            }
+          }
+        }       
+        xhr.open("post", url, true);
+        xhr.send(null);
+      }
+      function Request() {           
+        var url = "/cgi-bin/ppp.cgi?Data=Hello";
+        Send(url,function (e) {
+          alert(e);
+        });
+      }
+      Request();
+
+      // $.ajax({
+      //   type:"POST",
+      //   url:'cgi-bin/ppp.cgi',
+      //   // data:'user_name='+vUser+'&user_password='+vPwd,
+      //   success:function (data){
+      //     console.log(data);
+      //   },
+      //   error: (res) => {
+      //     console.log(res);
+
+      //   }
+        
+
+      // });
       
 
     },
@@ -110,6 +164,7 @@ export default {
     },
     butClick(id) {
       console.log(id);
+    
 
     },
     onChangeHome() {

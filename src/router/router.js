@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import addURL from '../libs/addTemplate.js';
-import iView from 'iview';
+// import iView from 'iview';
 
 Vue.use(Router);
 const routerList = {
@@ -20,7 +20,6 @@ const routerList = {
 const router = new Router(routerList);
 
 router.beforeEach((to, from, next) => {
-  iView.LoadingBar.start();
   // let user = sessionStorage.getItem('jaxUserName')
   // if (to.name !== 'login' && user === null) {
   //   next({
@@ -48,7 +47,7 @@ router.beforeEach((to, from, next) => {
   
 
 router.afterEach(() => {
-  iView.LoadingBar.finish();
+  // iView.LoadingBar.finish();
 });
 
 export default router;
